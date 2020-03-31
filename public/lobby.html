@@ -7,7 +7,7 @@
 	<title>Othello Game Lobby</title>
 	
 	<style>
-		.col {
+		.row {
 			background-color: rgb(0,0,128);
 			color: rgb(215,240,250);
 		}
@@ -24,6 +24,19 @@
 				<h1>Lobby</h1>
 			</div>
 		</div>
+		
+		<div class='row align-items-end' id='players'>
+			<div class='col-9 text-left'>
+				<h3>Players</h3>
+			</div>
+			<div class='col-3'>
+			</div>
+			
+			<!--This is where new people in the lobby will go-->
+			<!--Is it gonna be a problem that they aren't enclosed in a column??-->
+			
+		</div>
+		
 		<div class='row'>
 			<div class='col'>
 				<h3>Messages</h3>
@@ -39,7 +52,7 @@
 						<label for='send_message_holder' class='col-form-label sr-only'>Enter your chat message</label>
 						<input class='form-control' type='text' value='' id='send_message_holder' placeholder='Enter your chat message' autocomplete='off'/>
 					</div>
-					<button type='submit' class btn btn-default btn primary'>Send</button>
+					<button type='submit' class='btn btn-default btn primary'>Send</button>
 				
 				</form>
 			</div>
@@ -51,10 +64,10 @@
 		</div>
 	</div>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src='https://code.jquery.com/jquery-3.1.1.slim.min.js' integrity='sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n' crossorigin='anonymous'></script>
+	<script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js' integrity='sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb' crossorigin='anonymous'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js' integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn' crossorigin='anonymous'></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha256-bQmrZe4yPnQrLTY+1gYylfNMBuGfnT/HKsCGX+9Xuqo=" crossorigin="anonymous"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js' integrity='sha256-bQmrZe4yPnQrLTY+1gYylfNMBuGfnT/HKsCGX+9Xuqo=' crossorigin='anonymous'></script>
 	<script src='js/main.js'></script>
   </body>
 </html>
