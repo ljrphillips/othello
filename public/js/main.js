@@ -67,13 +67,13 @@ socket.on('join_room_response',function(payload){
 		nodeC.append(buttonC);
 		
 		/*hide and then animate appearance of nodes*/
-		/*nodeA.hide();
+		nodeA.hide();
 		nodeB.hide();
-		nodeC.hide();*/
+		nodeC.hide();
 		$('#players').append(nodeA,nodeB,nodeC);
-		/*nodeA.slideDown(1000);
+		nodeA.slideDown(1000);
 		nodeB.slideDown(1000);
-		nodeC.slideDown(1000);*/
+		nodeC.slideDown(1000);
 	}
 	/*handle case of someone reappearing*/
 	else {
