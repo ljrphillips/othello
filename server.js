@@ -160,7 +160,7 @@ io.sockets.on('connection',function(socket){
 			var room = players[socket.id].room;
 			var payload = 	{
 								username: username,
-								socket_id: socket_id
+								socket_id: socket.id
 							}
 			delete players[socket.id];
 			io.in(room).emit('player_disconnected',payload);

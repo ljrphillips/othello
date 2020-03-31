@@ -71,6 +71,9 @@ socket.on('join_room_response',function(payload){
 		nodeB.hide();
 		nodeC.hide();
 		$('#players').append(nodeA,nodeB,nodeC);
+		nodeA.hide();
+		nodeB.hide();
+		nodeC.hide();
 		nodeA.slideDown(1000);
 		nodeB.slideDown(1000);
 		nodeC.slideDown(1000);
