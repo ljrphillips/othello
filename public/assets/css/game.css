@@ -22,10 +22,11 @@ table#game_board td {
 }
 
 td.hovered_over:hover {
-	background-image: url('..images/hover.gif');
+	background-image:url('../images/hover.gif');
 	background-size: 100% 100%;
 }
 
 h1, h2, h3 {
 	color: rgb(215,240,250);
+	background-color: rgb(0,0,128);
 }
