@@ -395,6 +395,7 @@ socket.on('game_update',function(payload){
 						};
 					}(row,column));
 				}
+			}
 		}
 	}
 	$('#moonsum').html(moonsum);
