@@ -287,6 +287,7 @@ var old_board = [
 				];
 				
 var my_color = ' ';
+var interval_timer;
 
 socket.on('game_update',function(payload){
 	console.log('*** Client Log Message: \'game_update\'\n\tpayload: '+JSON.stringify(payload));
@@ -316,12 +317,33 @@ socket.on('game_update',function(payload){
 	}
 	
 	$('#my_color').html('<h3 id="my_color">I am team '+my_color+'</h3>');
-	$('#my_color').append('<h4>It is '+payload.game.whose_turn+'\'s turn</h4>');
+	$('#my_color').append('<h4>It is '+payload.game.whose_turn+'\'s turn. Elapsed time: <span id="elapsed"></span></h4>');
+	
+	clearInterval(interval_timer);
+	interval_timer = setInterval(function(last_time){
+						return function(){
+							var d = new Date();
+							var elapsedmilli = d.getTime() - last_time;
+							var minutes = Math.floor(elapsedmilli / (60 *1000));
+							var seconds = Math.floor((elapsedmilli % (60 * 1000)) / 1000);
+							
+							if (seconds < 10){
+								$('#elapsed').html(minutes+':0'+seconds);
+							}
+							else{
+								$('#elapsed').html(minutes+':'+seconds);
+							}
+						//Do the work of updating the UI
+						}
+					}(payload.game.last_move_time)
+					, 1000);
 	
 	/*animate changes to the board*/
 	
 	var moonsum = 0;
 	var shadowsum = 0;
+	var d = new Date();
+	var t = d.getTime();
 	
 	var row,column;
 	for(row = 0; row < 8; row++){
@@ -338,42 +360,42 @@ socket.on('game_update',function(payload){
 				/*TO EMPTY*/
 				if(old_board[row][column] == '?' && board[row][column] == ' '){
 					/*select correct box and add image for empty square*/
-					$('#'+row+'_'+column).html('<img src="assets/images/empty.gif" alt="empty square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/empty.gif"+t alt="empty square"/>');
 				}
 				/*TO MOON*/
 				else if(old_board[row][column] == '?' && board[row][column] == 'm'){
-					$('#'+row+'_'+column).html('<img src="assets/images/empty_to_moon.gif" alt="moon square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/empty_to_moon.gif"+t alt="moon square"/>');
 				}
 				/*TO SHADOW*/
 				else if(old_board[row][column] == '?' && board[row][column] == 's'){
-					$('#'+row+'_'+column).html('<img src="assets/images/empty_to_shadow.gif" alt="shadow square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/empty_to_shadow.gif"+t alt="shadow square"/>');
 				}
 				/*SPACE TO MOON*/
 				else if(old_board[row][column] == ' ' && board[row][column] == 'm'){
-					$('#'+row+'_'+column).html('<img src="assets/images/empty_to_moon.gif" alt="moon square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/empty_to_moon.gif"+t alt="moon square"/>');
 				}
 				/*SPACE TO SHADOW*/
 				else if(old_board[row][column] == ' ' && board[row][column] == 's'){
-					$('#'+row+'_'+column).html('<img src="assets/images/empty_to_shadow.gif" alt="shadow square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/empty_to_shadow.gif"+t alt="shadow square"/>');
 				}
 				/*MOON TO SPACE*/
 				else if(old_board[row][column] == 'm' && board[row][column] == ' '){
-					$('#'+row+'_'+column).html('<img src="assets/images/moon_to_empty.gif" alt="empty square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/moon_to_empty.gif"+t alt="empty square"/>');
 				}
 				/*SHADOW TO SPACE*/
 				else if(old_board[row][column] == 's' && board[row][column] == ' '){
-					$('#'+row+'_'+column).html('<img src="assets/images/shadow_to_empty.gif" alt="empty square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/shadow_to_empty.gif"+t alt="empty square"/>');
 				}
 				/*MOON TO SHADOW*/
 				else if(old_board[row][column] == 'm' && board[row][column] == 's'){
-					$('#'+row+'_'+column).html('<img src="assets/images/moon_to_shadow.gif" alt="shadow square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/moon_to_shadow.gif"+t alt="shadow square"/>');
 				}
 				/*SHADOW TO MOON*/
 				else if(old_board[row][column] == 's' && board[row][column] == 'm'){
-					$('#'+row+'_'+column).html('<img src="assets/images/shadow_to_moon.gif" alt="moon square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/shadow_to_moon.gif"+t alt="moon square"/>');
 				}
 				else {
-					$('#'+row+'_'+column).html('<img src="assets/images/error.gif" alt="error square"/>');
+					$('#'+row+'_'+column).html('<img src="assets/images/error.gif"+t alt="error square"/>');
 				}	
 			}
 			

@@ -30,3 +30,8 @@ h1, h2, h3 {
 	color: rgb(215,240,250);
 	background-color: rgb(0,0,128);
 }
+
+#elapsed, #my_color, #game_over, #messages {
+	color: rgb(215,240,250);
+	background-color: rgb(0,0,128);
+}
